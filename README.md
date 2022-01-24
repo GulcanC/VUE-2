@@ -1,24 +1,36 @@
 # VUE-2
-
-#  Go to the Project Page
+# Go to the Project Page
 https://gulcanc.github.io/VUE-2/
 
-#  About the Project
-This is my second VUE.js project as a part of the projects of the bestselling course “UDEMY - Vue - The Complete Guide (w/ Router, Vuex, Composition API)”. In this project I build some small front-end web applications.
+# About the Project
+This is my personal VUE.js project. After I had learned some new topics about Vue.js with the course project “Monster Slayer Game”, I decided to prepare a slightly more advanced project like this one. 
+There are some options for fighting against pirate, there is a battle log where we can see what happened. 
 
-# The Technologies/Technics Used:
-* VUE 3
+With this project I practiced with:
+data binding,
+interpolation,
+v-bind,
+event binding with v-on,
+output lists of data with v-for,
+conditional content with v-if, v-else
 
-* CSS, HTML
+# Technologies & Techniques Used:
+•	VUE 3
 
-* How to Output Reactive Data
+•	CSS, HTML
 
-* Listen to Events
+•	data binding
 
-* Interacting with DOM (Rendering Lists, Conditionally attaching/ detaching Elements ...)
+•	interpolation
 
-* Binding to Form Inputs
+•	v-bind
 
-* Git
+•	event binding with v-on
 
-* Github-pages
+•	output lists of data with v-for
+
+•	conditional content with v-if, v-else
+
+•	Git
+
+•	GitHub-pages
