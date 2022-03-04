@@ -1,5 +1,5 @@
 # VUE-2
-## Go to the Project Page
+### :point_right: Go to the Project Page
 📌 https://gulcanc.github.io/VUE-2/
 
 ## About the Project
@@ -14,7 +14,7 @@ event binding with v-on,
 output lists of data with v-for,
 conditional content with v-if, v-else
 
-## Technologies & Techniques Used:
+### :point_right: Technologies & Techniques Used:
 •	VUE 3
 
 •	CSS, HTML
