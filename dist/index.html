@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0,
+    shrink-to-fit=no"
+    />
+    <title>Project 2-Vue JS</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="vue 2.css" />
+    <script src="https://unpkg.com/vue@next" defer></script>
+    <script src="vue 2.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <h1>Pirate Game</h1>
+    </header>
+    <main id="game">
+      <div class="grid">
+        <section id="monster" class="container">
+          <img class="img-title" src="pirat1.gif" />
+          <h2>Pirate</h2>
+          <div title="Max. Pirate Health is 100" class="healthbar">
+            <div class="healthbar__value" :style="monsterBarStyles"></div>
+          </div>
+        </section>
+        <section id="player" class="container">
+          <img class="img-title" src="player1.gif" />
+          <h2>Player</h2>
+          <div title="Max. Player Health is 100" class="healthbar">
+            <div class="healthbar__value" :style="playerBarStyles"></div>
+          </div>
+        </section>
+      </div>
+      <!-- This part added after writing some code.-->
+      <section class="container" v-if="winner">
+        <h2><img src="gameover.gif" /></h2>
+        <h3 v-if="winner === 'monster'">
+          <img class="win" src="piratewin.gif" />
+          <figcaption>Pirate win!</figcaption>
+        </h3>
+        <h3 v-else-if="winner === 'player'">
+          <img class="win" src="playerwin.gif" />
+          <figcaption>Player win !</figcaption>
+        </h3>
+        <h3 v-else="winner === 'draw'">It's a draw!</h3>
+        <!-- This part also added after writing some code.-->
+        <button @click="startGame">🚩 Start New Game</button>
+      </section>
+      <!--buradaki v-else opacity gibi. yukarıdaki v-if="winner" il abğlantılı-->
+      <section id="controls" v-else>
+        <div class="grid-1">
+          <button
+            :disabled="monsterRaund"
+            @click="monsterAttack"
+            title=" 🪓 🪓 🪓 🪓 "
+          >
+            🪓 PIRATE'S ATTACK
+          </button>
+          <button
+            title="Pirate can only use the special attack in round 7"
+            :disabled="useMonsterSpecialAttack"
+            @click="monsterSpecialAttack"
+          >
+            💣 PIRATE'S SPECIAL ATTACK
+          </button>
+          <button
+            :disabled="useMonsterHeal"
+            @click="healMonster"
+            title="If the pirate's health is greater than 5, the pirate cannot heal himself."
+          >
+            💊💉 HEAL
+          </button>
+        </div>
+
+        <div>
+          <button
+            title="To see game rules click on the button"
+            class="ruleBtn"
+            @click="showModal=true"
+          >
+            Game Rules!
+          </button>
+          <transition name="fade" appear>
+            <div
+              class="modal-overlay"
+              v-if="showModal"
+              @click="showModal=false"
+            ></div>
+          </transition>
+          <transition name="slide" appear>
+            <div class="modal" v-if="showModal">
+              <h4>Game Rules:</h4>
+              <p><b>1.</b> The game starts with player's attack</p>
+              <p><b>2.</b> Max.health is "100" for both gamers</p>
+              <p>
+                <b>3.</b> Pirate can only use the special attack in round "7"
+              </p>
+              <p>
+                <b>4.</b> Player can only use the special attack in round "5"
+              </p>
+              <p>
+                <b>5.</b> The gamers can only heal themselves when their health
+                is below "5"
+              </p>
+              <button class="ruleBtnClose" @click="showModal = false">
+                Close Modal
+              </button>
+            </div>
+          </transition>
+        </div>
+
+        <div class="grid-2">
+          <button :disabled="yourRaund" @click="yourAttack" title="⚔️ ⚔️ ⚔️ ⚔️">
+            ⚔️ PLAYER'S ATTACK
+          </button>
+          <button
+            title="Player can only use the special attack in round 5"
+            :disabled="useYourSpecialAttack"
+            @click="yourSpecialAttack"
+          >
+            🧨 PLAYER'S SPECIAL ATTACK
+          </button>
+          <button
+            :disabled="usePlayerHeal"
+            @click="healPlayer"
+            title="If the player's health is greater than 5, the player cannot heal himself."
+          >
+            🩹🩺 HEAL
+          </button>
+        </div>
+      </section>
+      <section id="log" class="container">
+        <!--Ben iki tane savaş günlüğü oluşturdum buraya. -->
+        <h2>📝 Battle Log</h2>
+        <ol start="0">
+          <li v-for="logMessage in logMessages">
+            <!--🐞14- add "span" to write messages-->
+            <span
+              :class="{'log--player':logMessage.actionBy === 'player', 'log--monster':logMessage.actionBy ==='monster'}"
+              >{{logMessage.actionBy === 'player' ? 'Player' : 'Pirate'}}</span
+            >
+            <span v-if="logMessage.actionType ==='heal'">
+              heals himself for
+              <span class="log--heal">{{logMessage.actionValue}}</span></span
+            >
+            <span v-else-if="logMessage.actionType ==='special-attack'">
+              special-attacks and deals
+              <span class="log--damage1">{{logMessage.actionValue}}</span>
+            </span>
+            <span v-else>
+              attacks and deals
+              <span class="log--damage">{{logMessage.actionValue}}</span>
+            </span>
+          </li>
+        </ol>
+      </section>
+    </main>
+    <footer>
+      My Personal Project | Creating a Game with Vue.JS | Gulcan COSKUN
+    </footer>
+  </body>
+</html>
